@@ -67,7 +67,7 @@ def main():
         st.header("⚙️ Settings")
         
         # System Prompt Editor
-        with st.expander("🔧 Edit System Prompt", expanded=False):
+        with st.expander("Edit System Prompt", expanded=False):
             st.markdown("Customize the instructions given to the AI agent:")
             
             custom_prompt = st.text_area(
@@ -80,11 +80,11 @@ def main():
             
             col1, col2 = st.columns(2)
             with col1:
-                if st.button("💾 Save Prompt", use_container_width=True):
+                if st.button("Save Prompt", use_container_width=True):
                     st.session_state.custom_prompt = custom_prompt
                     st.success("Prompt saved!")
             with col2:
-                if st.button("🔄 Reset to Default", use_container_width=True):
+                if st.button("Reset to Default", use_container_width=True):
                     st.session_state.custom_prompt = DEFAULT_SYSTEM_PROMPT
                     st.success("Prompt reset to default!")
                     st.rerun()
@@ -130,7 +130,7 @@ def main():
             
             col1, col2 = st.columns([1, 4])
             with col1:
-                process_button = st.button("🚀 Process Papers", type="primary", use_container_width=True)
+                process_button = st.button("Process Papers", type="primary", use_container_width=True)
             
             if process_button:
                 process_papers(uploaded_files)
