@@ -48,7 +48,6 @@ def initialize_model():
     )
 
 # Initialize extractor agent
-@st.cache_resource
 def initialize_agent(sys_prompt):
     """Initialize the dimension extractor agent with optional custom prompt."""
     model = initialize_model()
