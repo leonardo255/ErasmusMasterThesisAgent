@@ -17,6 +17,9 @@ from src.parse_papers import chunk_pdf
 # Load environment variables
 load_dotenv()
 
+# Assets path
+assets_dir = Path(__file__).parent / "assets" / "images"
+
 # Page configuration
 st.set_page_config(
     page_title="Research Paper Analyzer",
@@ -55,6 +58,11 @@ def main():
     
     # Sidebar
     with st.sidebar:
+        # Display SDU logo at the top
+        sdu_logo_path = assets_dir / "sdu_logo.png"
+        if sdu_logo_path.exists():
+            st.image(str(sdu_logo_path), use_container_width=True)
+        
         st.header("⚙️ Settings")
         st.markdown("### About")
         st.info(
