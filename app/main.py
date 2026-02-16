@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 import sys
 
-# Add parent directory to path to import src modules
-sys.path.append(str(Path(__file__).parent.parent))
+# Add app directory to path to import src modules
+sys.path.append(str(Path(__file__).parent))
 
 from src.agents.prompt import SYS_PROMPT
 from src.agents.dimension_extractor import DimensionExtractor
