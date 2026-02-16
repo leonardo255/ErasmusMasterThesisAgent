@@ -37,6 +37,7 @@ if 'custom_prompt' not in st.session_state:
     st.session_state.custom_prompt = SYS_PROMPT
 
 # Initialize LLM model
+@st.cache_resource
 def initialize_model():
     """Initialize the Anthropic chat model."""
     return init_chat_model(
@@ -47,6 +48,7 @@ def initialize_model():
     )
 
 # Initialize extractor agent
+@st.cache_resource
 def initialize_agent(sys_prompt):
     """Initialize the dimension extractor agent with optional custom prompt."""
     model = initialize_model()
