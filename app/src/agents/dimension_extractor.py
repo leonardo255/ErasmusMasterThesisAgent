@@ -8,16 +8,24 @@ from src.metadata import add_agent_metadata
 
 
 class DimensionExtractor():
-    def __init__(self, model, sys_prompt):
-
+    def __init__(self, *, model, sys_prompt):
+        """Initialize DimensionExtractor with model and system prompt.
+        
+        Args:
+            model: The LLM model to use
+            sys_prompt: The system prompt for the agent
+        """
+        print(f"[DEBUG] Initializing DimensionExtractor with model={type(model).__name__}, prompt_length={len(sys_prompt) if sys_prompt else 0}")
+        
         self.role           = "Dimension Extractor Agent"
         self.version        = "1.0"
         self.model          = model
+        self.sys_prompt     = sys_prompt
 
         self.agent = create_agent(
             model           = self.model,
             tools           = [],
-            system_prompt   = sys_prompt,
+            system_prompt   = self.sys_prompt,
             #checkpointer   = self.checkpointer,
             middleware      = [],
         )

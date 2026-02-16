@@ -50,7 +50,7 @@ def initialize_model():
 def initialize_agent(sys_prompt):
     """Initialize the dimension extractor agent with optional custom prompt."""
     model = initialize_model()
-    return DimensionExtractor(model, sys_prompt)
+    return DimensionExtractor(model=model, sys_prompt=sys_prompt)
 
 # Main app
 def main():
