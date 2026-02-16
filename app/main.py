@@ -76,12 +76,19 @@ def main():
                 height=400,
                 help="Edit the system prompt to customize how the AI analyzes papers",
                 key="prompt_editor"
-                        col1 = st.columns(1)
             )
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("Save Prompt", use_container_width=True):
+                    st.session_state.custom_prompt = custom_prompt
+                    st.success("Prompt saved!")
+            with col2:
+                if st.button("Reset to Default", use_container_width=True):
+                    st.session_state.custom_prompt = SYS_PROMPT
+                    st.success("Prompt reset to default!")
+                    st.rerun()
 
-            if st.button("Save Prompt", use_container_width=True):
-                st.session_state.custom_prompt = custom_prompt
-                st.success("Prompt saved!")
         
         st.markdown("### About")
         st.info(
