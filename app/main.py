@@ -298,7 +298,7 @@ def results_to_dataframe(results):
             'Timestamp': metadata.get('timestamp', 'N/A'),
             'N_Chunks': metadata.get('n_chunks', 'N/A'),
             'DCM Capability': analysis.get('dcm_capability', ''),
-            'SCOR Process': analysis.get('score_process', ''),
+            'SCOR Process': analysis.get('scor_process', ''),
             'SCRM Area': analysis.get('scrm_area', ''),
             'Problem Description': analysis.get('problem_description', ''),
             'AI Technology Nature': analysis.get('ai_technology_nature', ''),
