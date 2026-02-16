@@ -8,7 +8,7 @@ from src.metadata import add_agent_metadata
 
 
 class DimensionExtractor():
-    def __init__(self, *, model, sys_prompt):
+    def __init__(self, model, sys_prompt):
         """Initialize DimensionExtractor with model and system prompt.
         Args:
             model: The LLM model to use
