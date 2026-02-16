@@ -11,7 +11,7 @@ import sys
 # Add parent directory to path to import src modules
 sys.path.append(str(Path(__file__).parent.parent))
 
-from src.agents.dimension_extractor import DimensionExtractor
+from src.agents.dimension_extractor import DimensionExtractor, DEFAULT_SYSTEM_PROMPT
 from src.parse_papers import chunk_pdf
 
 # Load environment variables
@@ -32,6 +32,8 @@ if 'processed_papers' not in st.session_state:
     st.session_state.processed_papers = []
 if 'analysis_results' not in st.session_state:
     st.session_state.analysis_results = []
+if 'custom_prompt' not in st.session_state:
+    st.session_state.custom_prompt = DEFAULT_SYSTEM_PROMPT
 
 # Initialize LLM model
 @st.cache_resource
@@ -45,11 +47,10 @@ def initialize_model():
     )
 
 # Initialize extractor agent
-@st.cache_resource
-def initialize_agent():
-    """Initialize the dimension extractor agent."""
+def initialize_agent(sys_prompt=None):
+    """Initialize the dimension extractor agent with optional custom prompt."""
     model = initialize_model()
-    return DimensionExtractor(model)
+    return DimensionExtractor(model, sys_prompt=sys_prompt)
 
 # Main app
 def main():
@@ -64,6 +65,30 @@ def main():
             st.image(str(sdu_logo_path), use_container_width=True)
         
         st.header("⚙️ Settings")
+        
+        # System Prompt Editor
+        with st.expander("🔧 Edit System Prompt", expanded=False):
+            st.markdown("Customize the instructions given to the AI agent:")
+            
+            custom_prompt = st.text_area(
+                "System Prompt",
+                value=st.session_state.custom_prompt,
+                height=400,
+                help="Edit the system prompt to customize how the AI analyzes papers",
+                key="prompt_editor"
+            )
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("💾 Save Prompt", use_container_width=True):
+                    st.session_state.custom_prompt = custom_prompt
+                    st.success("Prompt saved!")
+            with col2:
+                if st.button("🔄 Reset to Default", use_container_width=True):
+                    st.session_state.custom_prompt = DEFAULT_SYSTEM_PROMPT
+                    st.success("Prompt reset to default!")
+                    st.rerun()
+        
         st.markdown("### About")
         st.info(
             "This tool analyzes research papers on supply chain management "
@@ -99,9 +124,13 @@ def main():
                 for file in uploaded_files:
                     st.write(f"- {file.name} ({file.size / 1024:.1f} KB)")
             
+            # Show if using custom prompt
+            if st.session_state.custom_prompt != DEFAULT_SYSTEM_PROMPT:
+                st.info("ℹ️ Using custom system prompt. Edit in Settings sidebar.")
+            
             col1, col2 = st.columns([1, 4])
             with col1:
-                process_button = st.button("Process Papers", type="primary", use_container_width=True)
+                process_button = st.button("🚀 Process Papers", type="primary", use_container_width=True)
             
             if process_button:
                 process_papers(uploaded_files)
@@ -190,7 +219,8 @@ def main():
 def process_papers(uploaded_files):
     """Process uploaded PDF files."""
     try:
-        agent = initialize_agent()
+        # Initialize agent with custom prompt from session state
+        agent = initialize_agent(sys_prompt=st.session_state.custom_prompt)
         
         # Progress tracking
         progress_bar = st.progress(0)
