@@ -112,7 +112,6 @@ if 'custom_prompt' not in st.session_state:
     st.session_state.custom_prompt = DEFAULT_SYSTEM_PROMPT
 
 # Initialize LLM model
-@st.cache_resource
 def initialize_model():
     """Initialize the Anthropic chat model."""
     return init_chat_model(
