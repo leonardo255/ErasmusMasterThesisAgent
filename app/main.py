@@ -53,7 +53,7 @@ def initialize_agent():
 
 # Main app
 def main():
-    st.title("📄 Research Paper Analyzer")
+    st.title("Research Paper Analyzer")
     st.markdown("Upload PDF research papers to extract structured dimensions using AI.")
     
     # Sidebar
