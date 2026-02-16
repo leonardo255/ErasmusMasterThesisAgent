@@ -9,8 +9,6 @@ from src.metadata import add_agent_metadata
 
 class DimensionExtractor():
     def __init__(self, model, sys_prompt):
-        
-        self.sys_prompt = sys_prompt
 
         self.role           = "Dimension Extractor Agent"
         self.version        = "1.0"
@@ -19,7 +17,7 @@ class DimensionExtractor():
         self.agent = create_agent(
             model           = self.model,
             tools           = [],
-            system_prompt   = self.sys_prompt,
+            system_prompt   = sys_prompt,
             #checkpointer   = self.checkpointer,
             middleware      = [],
         )
