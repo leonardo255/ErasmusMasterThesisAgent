@@ -1,0 +1,8 @@
+{
+    "dcm_capability": null,
+    "score_process": "Enable",
+    "scrm_area": "Cyber/Information Risk",
+    "problem_description": "Malicious code injected into open-source Python packages (PyPI) poses a growing threat to software supply chains, requiring detection methods that can identify obfuscated and semantically concealed adversarial components.",
+    "ai_technology_nature": "Large Language Models (LLMs) with Multi-Agent Systems; Fine-tuned CodeBERT transformer model; LLaMA-3 agents for orchestration; Supervised learning with binary classification",
+    "industry_sector": "General"
+}

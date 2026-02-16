@@ -1,0 +1,8 @@
+{
+    "dcm_capability": "Intelligent Supply",
+    "score_process": "Source",
+    "scrm_area": "Cyber/Information Risk",
+    "problem_description": "Selecting trustworthy service providers in dynamic IoT environments where unknown entities must collaborate without prior track records, particularly in supply chain contexts.",
+    "ai_technology_nature": "Multi-Agent System with Principal Component Analysis (PCA) for anomaly detection; Trust and reputation algorithms using direct experience, indirect experience, and market evaluation scoring; Auto-Scale Weights (ASW) dynamic weighting technique",
+    "industry_sector": "Manufacturing (Smart Factory / Industrial IoT)"
+}
