@@ -6,7 +6,11 @@ from src.agents.schemas import Dimensions
 from src.metadata import add_agent_metadata
 
 
-DEFAULT_SYSTEM_PROMPT = """
+
+class DimensionExtractor():
+    def __init__(self, model, sys_prompt=None):
+        if sys_prompt is None:
+            sys_prompt = """
 You are an expert academic analyst specializing in Digital Supply Networks and Artificial Intelligence.
 
 Your goal is to analyze research papers and extract structured data across supply chain sectors.
@@ -80,12 +84,6 @@ If the paper addresses Supply Chain Risk Management, classify the type of risk:
 
 Your output should be a valid JSON object matching the Dimensions schema.
 """
-
-
-class DimensionExtractor():
-    def __init__(self, model, sys_prompt=None):
-        if sys_prompt is None:
-            sys_prompt = DEFAULT_SYSTEM_PROMPT
         
         self.sys_prompt = sys_prompt
 
